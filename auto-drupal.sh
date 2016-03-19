@@ -27,6 +27,7 @@ echo -n "開始進行 drupal 中文化介面與校務模組安裝..."
 
 docker exec  drupal drush dl drush_language
 docker exec  drupal drush dl l10n_update  
+docker exec  drupal drush en -y l10n_update
 docker exec  drupal drush language-add zh-hant 
 docker exec  drupal drush language-enable zh-hant 
 docker exec  drupal drush language-default zh-hant
