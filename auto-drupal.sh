@@ -34,4 +34,5 @@ docker exec  drupal drush language-import zh-hant drupal-7.x.zh-hant.po
 docker exec  drupal drush -y en locale translation views date calendar
 docker exec  drupal drush -y en openid_provider simsauth sims_views sims_field gapps db2health openid_moe adsync  gevent thumbnail_link   xrds_simple
 docker exec  drupal drush language-add zh-hant && drush language-enable zh-hant && drush language-default zh-hant
-
+echo -n "安裝結束 您可以使用下列網址測試drupal是否安裝成功 系統管理員帳號為admin 密碼為"$drupal_admin_pw
+ifconfig eth0 | grep 'inet addr:' | cut -d: -f2 | awk '{ print "http://"$1"/"}'
