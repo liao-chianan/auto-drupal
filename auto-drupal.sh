@@ -59,7 +59,7 @@ echo -n "開始進行 drupal 站台自動化安裝作業...."
 docker exec  drupal drush -y  site-install standard --clean-url=0 --site-name=$drupal_sitename --account-pass=$drupal_admin_pw --db-url=mysql://root:${mysql_pw}@db/drupal
 
 echo -n "開始進行 drupal 中文化介面與校務模組安裝..."
-
+docker exec  drupal sed -i 's/memory_limit = -1/memory_limit = 256M/g' /etc/php5/cli/php.ini
 docker exec  drupal drush dl drush_language
 docker exec  drupal drush dl l10n_update  
 docker exec  drupal drush en -y l10n_update
