@@ -95,6 +95,7 @@ docker exec  drupal curl -O https://ftp.drupal.org/files/translations/7.x/drupal
 docker exec  drupal drush language-import zh-hant drupal-7.x.zh-hant.po
 docker exec  drupal drush -y en locale translation views date calendar
 docker exec  drupal drush -y en openid_provider simsauth sims_views sims_field gapps db2health openid_moe adsync  gevent thumbnail_link   xrds_simple
+docker restart drupal
 echo " ========================================================"
 printf "\E[0;32;40m"
 echo -e "安裝結束 您可以使用下列網址測試drupal是否安裝成功 系統管理員帳號為 admin   密碼為"  $drupal_admin_pw "\n"
