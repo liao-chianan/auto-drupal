@@ -26,7 +26,7 @@ docker exec  drupal drush -y  site-install standard --clean-url=0 --site-name=$d
 echo -n "開始進行 drupal 中文化介面與校務模組安裝..."
 
 docker exec  drupal drush dl drush_language
-docker exec  drupal drush dl l10n_update && drush en -y $_
+docker exec  drupal drush dl l10n_update  
 docker exec  drupal drush language-add zh-hant 
 docker exec  drupal drush language-enable zh-hant 
 docker exec  drupal drush language-default zh-hant
@@ -35,5 +35,5 @@ docker exec  drupal drush language-import zh-hant drupal-7.x.zh-hant.po
 docker exec  drupal drush -y en locale translation views date calendar
 docker exec  drupal drush -y en openid_provider simsauth sims_views sims_field gapps db2health openid_moe adsync  gevent thumbnail_link   xrds_simple
 
-echo  "安裝結束 您可以使用下列網址測試drupal是否安裝成功 系統管理員帳號為 admin   密碼為"  $drupal_admin_pw
+echo -e "安裝結束 您可以使用下列網址測試drupal是否安裝成功 系統管理員帳號為 admin   密碼為"  $drupal_admin_pw "\n"
 ifconfig eth0 | grep 'inet addr:' | cut -d: -f2 | awk '{ print "http://"$1"/"}'
