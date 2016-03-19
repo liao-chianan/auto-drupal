@@ -5,8 +5,40 @@ read -p "請輸入您要使用的drupal站台名稱(Please enter your drupal sit
 
 read -p "請輸入您要使用的drupal管理員密碼(Please enter your drupal admin password): "  drupal_admin_pw
 
-echo -e "於debian系統底下 安裝docker\n\n"
-apt-get update && apt-get --assume-yes install curl  && curl -fsSL https://get.docker.com/ | sh
+echo -e "偵測系統版本....."
+
+if [ -f /etc/lsb-release ]; then
+    . /etc/lsb-release
+    DISTRO=$DISTRIB_ID
+elif [ -f /etc/debian_version ]; then
+    DISTRO=Debian
+    # XXX or Ubuntu
+elif [ -f /etc/redhat-release ]; then
+    DISTRO="RedHat"
+    # XXX or CentOS or Fedora
+else
+    DISTRO=$(uname -s)
+fi
+
+echo -e "系統版本為:" $DISTRO " 開始進行docker安裝"
+
+case ${DISTRO} in
+  "RedHat")
+	echo -e "於RedHat/CentOS 系統底下 安裝docker\n\n"
+        yum -y install net-tools
+	yum -y install docker
+        ;;
+  "Debian")
+        echo -e "於Debian/Ubuntu系統底下 安裝docker\n\n"
+	apt-get update && apt-get --assume-yes install curl  && curl -fsSL https://get.docker.com/ | sh
+        ;;
+  "Ubuntu")
+        echo -e "於Debian/Ubuntu系統底下 安裝docker\n\n"
+	apt-get update && apt-get --assume-yes install curl  && curl -fsSL https://get.docker.com/ | sh
+        ;;
+esac
+
+
 
 echo  -n "開始進行mysql docker部署動作...."
 
