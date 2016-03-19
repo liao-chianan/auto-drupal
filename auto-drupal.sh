@@ -1,5 +1,5 @@
 echo -e "於debian系統底下 安裝docker\n\n"
-apt-get update && apt-get -y install curl  && curl -fsSL https://get.docker.com/ | sh
+apt-get update && apt-get --assume-yes install curl  && curl -fsSL https://get.docker.com/ | sh
 
 
 echo -e "開始進行參數設定\n\n"
