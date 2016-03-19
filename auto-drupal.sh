@@ -27,6 +27,8 @@ case ${DISTRO} in
 	echo -e "於RedHat/CentOS 系統底下 安裝docker\n\n"
         yum -y install net-tools
 	yum -y install docker
+	systemctl enable docker
+	chkconfig docker on
         ;;
   "Debian")
         echo -e "於Debian/Ubuntu系統底下 安裝docker\n\n"
