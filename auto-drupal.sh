@@ -73,3 +73,4 @@ docker exec  drupal drush -y en openid_provider simsauth sims_views sims_field g
 
 echo -e "安裝結束 您可以使用下列網址測試drupal是否安裝成功 系統管理員帳號為 admin   密碼為"  $drupal_admin_pw "\n"
 ifconfig eth0 | grep 'inet addr:' | cut -d: -f2 | awk '{ print "http://"$1"/"}'
+ifconfig eth0 | grep 'inet ' |cut -d ' ' -f10 | awk '{ print "http://"$1"/"}'
