@@ -10,10 +10,10 @@ fosstp 臺北市自由軟體推動小組--自動安裝校園網站Drupal 指令�
 <br>
 
 如果您是使用Debian/Ubuntu系統<br>
-請執行底下指令<br><br>
-wget -O auto-drupal.sh https://raw.githubusercontent.com/liao-chianan/auto-drupal/master/auto-drupal.sh;chmod +x auto-drupal.sh;sudo ./auto-drupal.sh
+請使用系統管理員root權限，執行底下指令<br><br>
+wget -O auto-drupal.sh https://raw.githubusercontent.com/liao-chianan/auto-drupal/master/auto-drupal.sh;chmod +x auto-drupal.sh;./auto-drupal.sh
 
 <br>如果您是使用RedHat/CentOS系統<br>
-請執行底下指令<br><br>
-yum -y install wget;wget -O auto-drupal.sh https://raw.githubusercontent.com/liao-chianan/auto-drupal/master/auto-drupal.sh;chmod +x auto-drupal.sh;sudo ./auto-drupal.sh
+請使用系統管理員root權限，執行底下指令<br><br>
+yum -y install wget;wget -O auto-drupal.sh https://raw.githubusercontent.com/liao-chianan/auto-drupal/master/auto-drupal.sh;chmod +x auto-drupal.sh;./auto-drupal.sh
 
