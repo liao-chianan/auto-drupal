@@ -3,7 +3,7 @@
 fosstp 臺北市自由軟體推動小組--自動安裝校園網站Drupal 指令<br><br>
 
 請先確認您的環境：<br>
-1.必須為用Debian/Ubuntu 或RedHat/CentOS 等 linux 作業系統<br>
+1.必須為 Debian/Ubuntu 或 RedHat/CentOS 等 linux 作業系統<br>
 2.必須已經設定好網路，能夠上網<br>
 3.使用系統管理員root權限，執行下列指令進行自動化安裝程序，並於安裝程序中依照提示輸入相關資料<br>
 <br>
