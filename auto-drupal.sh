@@ -8,7 +8,7 @@ echo -e "請先進行參數設定\n"
 printf "\E[0m"
 echo " ========================================================"
 printf "\E[0;33;40m"
-read -p "請輸入您要使用的mysql root密碼(Please enter your mysql root password for setting up): " mysql_pw
+read -p "請輸入您要使用的mysql root密碼(Please enter your mysql root password): " mysql_pw
 
 read -p "請輸入您要使用的drupal站台名稱(Please enter your drupal site-name): "  drupal_sitename
 
