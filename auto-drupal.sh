@@ -37,8 +37,7 @@ echo " ========================================================"
 case ${DISTRO} in
   "RedHat")
 	echo -e "於RedHat/CentOS 系統底下 安裝docker\n\n"
-        yum -y install net-tools
-	yum -y install docker
+        yum -y install net-tools && curl -fsSL https://get.docker.com/ | sh
 	systemctl start docker
 	systemctl enable docker
 	chkconfig docker on
