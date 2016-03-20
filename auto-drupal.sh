@@ -59,7 +59,7 @@ echo  -n "開始進行mysql docker部署動作...."
 printf "\E[0m"
 echo " ========================================================"
 
-docker run --name mysql -e MYSQL_ROOT_PASSWORD=$mysql_pw -e MYSQL_DATABASE=drupal  -d mysql/mysql-server
+docker run --restart=always  --name mysql -e MYSQL_ROOT_PASSWORD=$mysql_pw -e MYSQL_DATABASE=drupal  -d mysql/mysql-server
 docker run --name mysqlwait --link mysql aanand/wait
 docker rm mysqlwait
 
@@ -68,7 +68,7 @@ echo -n "開始進行drupal docker部署動作...."
 printf "\E[0m"
 echo " ========================================================"
 
-docker run --name drupal --link mysql:db -p 80:80 -p 443:443 -d fosstp/drupal
+docker run --restart=always  --name drupal --link mysql:db -p 80:80 -p 443:443 -d fosstp/drupal
 
 printf "\E[0;35;40m"
 echo -n "開始進行 drupal 站台自動化安裝作業...."
