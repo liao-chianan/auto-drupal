@@ -18,7 +18,7 @@ wget -O auto-drupal.sh https://raw.githubusercontent.com/liao-chianan/auto-drupa
 yum -y install wget;wget -O auto-drupal.sh https://raw.githubusercontent.com/liao-chianan/auto-drupal/master/auto-drupal.sh;chmod +x auto-drupal.sh;./auto-drupal.sh
 
 <br>如果您是使用Qnap/Synology系統<br>
-1.請確認已經安裝Docker (Qnap的Container Station) (Synology)<br>
-2.使用最高權限登入SSH命令列畫面 (Qnap使用admin) (Synology)<br>
+1.請確認已經安裝Docker (Qnap的Container Station) (Synology的Docker套件)<br>
+2.使用最高權限登入SSH命令列畫面 (Qnap使用admin) (Synology使用root)<br>
 3.執行底下指令<br><br>
 curl -k https://raw.githubusercontent.com/liao-chianan/auto-drupal/master/autodrupal-qnap-synology.sh --output auto-drupal.sh;chmod +x auto-drupal.sh;./auto-drupal.sh
