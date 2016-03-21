@@ -32,8 +32,6 @@ printf "\E[0m"
 echo " ========================================================"
 
 docker run --restart=always  --name drupal --link mysql:db -p 8888:80 -p 4433:443 -d fosstp/drupal
-docker run --name drupalwait --link drupal:drupal aanand/wait
-docker rm drupalwait
 printf "\E[0;35;40m"
 echo -n "開始進行 drupal 站台自動化安裝作業...."
 printf "\E[0m"
