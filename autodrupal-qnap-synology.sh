@@ -46,9 +46,19 @@ printf "\E[0;35;40m"
 echo -n "開始進行 drupal 中文化介面與校務模組安裝..."
 printf "\E[0m"
 echo " ========================================================"
+docker exec  drupal cp /etc/php5/cli/php.ini  /usr/local/etc/php/
+docker exec  drupal sed -i 's/memory_limit = -1/memory_limit = 256M/g' /usr/local/etc/php/php.ini
+docker exec  drupal drush dl drush_language
+docker exec  drupal drush dl l10n_update  
+docker exec  drupal drush en -y l10n_update
 docker exec  drupal drush language-add zh-hant 
 docker exec  drupal drush language-enable zh-hant 
 docker exec  drupal drush language-default zh-hant
+docker exec  drupal curl -O https://ftp.drupal.org/files/translations/7.x/drupal/drupal-7.x.zh-hant.po
+docker exec  drupal drush language-import zh-hant drupal-7.x.zh-hant.po
+docker exec  drupal drush -y en locale translation views date calendar
+docker exec  drupal drush -y en openid_provider simsauth sims_views sims_field gapps db2health openid_moe adsync  gevent thumbnail_link   xrds_simple
+docker restart drupal
 echo " ========================================================"
 printf "\E[0;32;40m"
 echo -e "安裝結束 您可以使用下列網址測試drupal是否安裝成功 系統管理員帳號為 admin   密碼為"  $drupal_admin_pw "\n"
