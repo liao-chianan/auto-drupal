@@ -59,6 +59,6 @@ docker exec  drupal drush -y en openid_provider simsauth sims_views sims_field g
 docker restart drupal
 echo " ========================================================"
 printf "\E[0;32;40m"
-echo -e "安裝結束 您可以使用下列網址測試drupal是否安裝成功 系統管理員帳號為 admin   密碼為"  $drupal_admin_pw "\n"
+echo -e "安裝結束 您可以使用下列網址測試drupal是否安裝成功  系統管理員帳號為 admin   密碼為"  $drupal_admin_pw "\n"
 ifconfig  | grep 'inet addr:' | cut -d: -f2 | awk '{ print "http://"$1":8888/"}'
 printf "\E[0m"
