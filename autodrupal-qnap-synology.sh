@@ -23,7 +23,7 @@ printf "\E[0m"
 echo " ========================================================"
 
 docker run --restart=always  --name mysql -e MYSQL_ROOT_PASSWORD=$mysql_pw -e MYSQL_DATABASE=drupal  -d mysql/mysql-server
-docker run --name mysqlwait --link mysql aanand/wait
+docker run --name mysqlwait --link mysql:mysql aanand/wait
 docker rm mysqlwait
 
 printf "\E[0;35;40m"
@@ -32,7 +32,7 @@ printf "\E[0m"
 echo " ========================================================"
 
 docker run --restart=always  --name drupal --link mysql:db -p 8888:80 -p 4433:443 -d fosstp/drupal
-docker run --name drupalwait --link mysql aanand/wait
+docker run --name drupalwait --link drupal:drupal aanand/wait
 docker rm drupalwait
 printf "\E[0;35;40m"
 echo -n "開始進行 drupal 站台自動化安裝作業...."
