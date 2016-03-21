@@ -59,7 +59,7 @@ printf "\E[0m"
 echo " ========================================================"
 
 docker run --restart=always  --name mysql -e MYSQL_ROOT_PASSWORD=$mysql_pw -e MYSQL_DATABASE=drupal  -d mysql/mysql-server
-docker run --name mysqlwait --link mysql aanand/wait
+docker run --name mysqlwait --link mysql:mysql aanand/wait
 docker rm mysqlwait
 
 printf "\E[0;35;40m"
