@@ -94,6 +94,8 @@ docker exec  drupal curl -O https://ftp.drupal.org/files/translations/7.x/drupal
 docker exec  drupal drush language-import zh-hant drupal-7.x.zh-hant.po
 docker exec  drupal drush -y en locale translation views date calendar
 docker exec  drupal drush -y en openid_provider simsauth sims_views sims_field gapps db2health openid_moe adsync  gevent thumbnail_link   xrds_simple
+docker exec  drupal chown -R www-data:www-data /var/www/html/sites/default
+docker exec  drupal chmod -R 755 /var/www/html/sites/default/files
 docker restart drupal
 echo " ========================================================"
 printf "\E[0;32;40m"
