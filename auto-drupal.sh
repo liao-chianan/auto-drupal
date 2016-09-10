@@ -59,7 +59,13 @@ printf "\E[0m"
 echo " ========================================================"
 
 docker run --restart=always  --name mysql -e MYSQL_ROOT_PASSWORD=$mysql_pw -e MYSQL_DATABASE=drupal  -d mysql/mysql-server
-sleep 10
+printf "\nWaiting Mysql Container Loading."
+
+until [ $(docker inspect mysql|grep \"Pid\" | awk '{print  $2}'|sed -r "s/[,]+//g") -ne "0" ]; do
+        printf "."
+        sleep 1
+done
+printf "Complete\n"
 
 
 printf "\E[0;35;40m"
