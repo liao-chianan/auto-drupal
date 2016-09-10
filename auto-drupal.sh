@@ -84,8 +84,8 @@ echo " ========================================================"
 
 docker exec  drupal cp /etc/php5/cli/php.ini  /usr/local/etc/php/
 docker exec  drupal sed -i 's/memory_limit = -1/memory_limit = 256M/g' /usr/local/etc/php/php.ini
-docker exec  drupal drush dl drush_language
-docker exec  drupal drush dl l10n_update  
+docker exec  drupal drush dl drush_language -y
+docker exec  drupal drush dl l10n_update -y
 docker exec  drupal drush en -y l10n_update
 docker exec  drupal drush language-add zh-hant 
 docker exec  drupal drush language-enable zh-hant 
