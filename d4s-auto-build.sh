@@ -12,7 +12,7 @@ else
 	echo $git_pull_reflog
 
 	docker_build_tag=$(git reflog --date=iso  master | awk 'NR==1{gsub ( "master@{","master_" ) ; print $1 }')
-	docker build -t "d4s-$docker_build_tag" ~/liao-chianan/drupal4school > ~/"$git_pull_reflog.log"
+	docker build -t "d4s-$docker_build_tag" ~/drupal4school > ~/"$git_pull_reflog.log"
 
 
 	check_build=$(tail -n 1 ~/"$git_pull_reflog.log")
