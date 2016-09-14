@@ -23,7 +23,7 @@ else
 		imageid=$(tail -n 1 ~/"$git_pull_reflog.log" | awk '{print $3}')
 		docker stop $(docker ps -a -q)
 		docker rm -f $(docker ps -a -q)
-		docker rmi -f $(docker images -q| awk '$0 !~ /$imageid/{print}') 
+		docker rmi -f $(docker images -q| awk '$0 != "'"$imageid"'" {print}') 
 	
 		docker run --restart=always  --name mysql -e MYSQL_ROOT_PASSWORD=1234 -e MYSQL_DATABASE=drupal  -d mysql/mysql-server
 		printf "\nWaiting Mysql Container Loading."
