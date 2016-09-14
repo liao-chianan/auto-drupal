@@ -35,7 +35,7 @@ else
 
 		
 		docker run --restart=always  --name drupal --link mysql:db -p 80:80 -p 443:443 -d "d4s-$docker_build_tag"
-		docker exec  drupal drush -y  site-install standard --clean-url=0 --site-name=$git_pull_reflog --account-pass=1234 --db-url=mysql://root:1234@db/drupal
+		docker exec  drupal drush -y  site-install standard --clean-url=0 --site-name=$docker_build_tag --account-pass=1234 --db-url=mysql://root:1234@db/drupal
 		docker exec  drupal cp /etc/php5/cli/php.ini  /usr/local/etc/php/
 		docker exec  drupal sed -i 's/memory_limit = -1/memory_limit = 256M/g' /usr/local/etc/php/php.ini
 		docker exec  drupal drush dl drush_language -y
