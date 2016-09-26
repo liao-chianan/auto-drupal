@@ -139,7 +139,7 @@ docker exec  drupal chmod -R 755 /var/www/html/sites/default/files
 docker restart drupal
 echo " ========================================================"
 printf "\E[0;32;40m"
-echo -e "安裝結束 您可以使用下列網址測試drupal是否安裝成功 系統管理員帳號為 admin 密碼為"  $drupal_admin_pw "\n phpmyadmin網址為$pmaurl，您可以使用帳號root 密碼$mysql_pw進行管理"
+echo -e "安裝結束 您可以使用下列網址測試drupal是否安裝成功 系統管理員帳號為 admin 密碼為"  $drupal_admin_pw "\n"
 hostname -I | awk '{ print "http://"$1"/"}'
 
 if [ "${pma_yn}" == "Y" ] || [ "${pma_yn}" == "y" ]; then
