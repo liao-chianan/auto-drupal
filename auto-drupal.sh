@@ -62,6 +62,21 @@ echo " ========================================================"
 
 docker run --restart=always  --name mysql -e MYSQL_ROOT_PASSWORD=$mysql_pw -e MYSQL_DATABASE=drupal  -d mysql/mysql-server
 
+mysql_ip=$(docker inspect mysql|grep \"IPAddress\" | awk 'NR==1{gsub ( "\"","" );gsub ( ",","" ); print $2 }')
+
+if [ -f /etc/redhat-release ]; then
+
+	while ! printf "." | nc  $mysql_ip 3306 &> /dev/null; do sleep 11; done    
+
+else
+   
+                until nc -z -v -w30 $mysql_ip 3306 &> /dev/null
+                do
+                         printf "."
+                        sleep 1
+                done
+fi
+
 printf "\nWaiting Mysql Container 3306 socket."
 
                 mysql_ip=$(docker inspect mysql|grep \"IPAddress\" | awk 'NR==1{gsub ( "\"","" );gsub ( ",","" ); print $2 }')
