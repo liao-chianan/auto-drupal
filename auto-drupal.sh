@@ -64,7 +64,7 @@ docker run --restart=always  --name mysql -e MYSQL_ROOT_PASSWORD=$mysql_pw -e MY
 
 printf "\nWaiting Mysql Container 3306 socket."
 
-                mysql_ip=$(docker inspect mysql|grep \"IPAddress\" | awk 'NR==1{gsub ( "\"","" );gsub ( "\,","" ); print $2 }')
+                mysql_ip=$(docker inspect mysql|grep \"IPAddress\" | awk 'NR==1{gsub ( "\"","" );gsub ( ",","" ); print $2 }')
 
                 until nc -z -v -w30 $mysql_ip 3306 &> /dev/null
                 do
@@ -126,4 +126,10 @@ echo " ========================================================"
 printf "\E[0;32;40m"
 echo -e "安裝結束 您可以使用下列網址測試drupal是否安裝成功 系統管理員帳號為 admin 密碼為"  $drupal_admin_pw "\n phpmyadmin網址為$pmaurl，您可以使用帳號root 密碼$mysql_pw進行管理"
 hostname -I | awk '{ print "http://"$1"/"}'
+
+if [ "${pma_yn}" == "Y" ] || [ "${pma_yn}" == "y" ]; then
+        echo -e "\n您可以使用下列網址測試phpmyadmin是否安裝成功 phpmyadmin帳號為 root 密碼為"  $mysql_pw  "\n"
+        hostname -I | awk '{ print "http://"$1":8080/"}'
+fi
+
 printf "\E[0m"
