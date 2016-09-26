@@ -10,6 +10,8 @@ echo " ========================================================"
 printf "\E[0;33;40m"
 read -p "請輸入您要使用的mysql root密碼(Please enter your mysql root password): " mysql_pw
 
+read -p "您是否要安裝phpmyadmin(Do you want to install phpmyadmin) Y/N: " pma_yn
+
 read -p "請輸入您要使用的drupal站台名稱(Please enter your drupal site-name): "  drupal_sitename
 
 read -p "請輸入您要使用的drupal管理員密碼(Please enter your drupal admin password): "  drupal_admin_pw
@@ -74,20 +76,31 @@ printf "Complete\n"
 
 
 
+if [ "${pma_yn}" == "Y" ] || [ "${pma_yn}" == "y" ]; then
+	printf "\E[0;35;40m"
+	echo -n "開始進行phpmyadmin docker部署動作...."
+	printf "\E[0m"
+	docker run --restart=always --name phpmyadmin --link mysql:db -p 8080:80 -d phpmyadmin/phpmyadmin
+	echo " ========================================================完成"
+
+	
+fi
+
+
+
 printf "\E[0;35;40m"
 echo -n "開始進行drupal docker部署動作...."
 printf "\E[0m"
-echo " ========================================================"
-
 docker run --restart=always  --name drupal --link mysql:db -p 80:80 -p 443:443 -d fosstp/drupal
+echo " ========================================================完成"
+
+
 
 printf "\E[0;35;40m"
 echo -n "開始進行 drupal 站台自動化安裝作業...."
 printf "\E[0m"
-echo " ========================================================"
-
 docker exec  drupal drush -y  site-install standard --clean-url=0 --site-name=$drupal_sitename --account-pass=$drupal_admin_pw --db-url=mysql://root:${mysql_pw}@db/drupal
-
+echo " ========================================================完成"
 
 printf "\E[0;35;40m"
 echo -n "開始進行 drupal 中文化介面與校務模組安裝..."
