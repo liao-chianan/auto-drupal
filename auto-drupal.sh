@@ -90,7 +90,7 @@ if [ "${pma_yn}" == "Y" ] || [ "${pma_yn}" == "y" ]; then
 	printf "\E[0m"
 	docker run --restart=always --name phpmyadmin --link mysql:db -p 8080:80 -d phpmyadmin/phpmyadmin
 	echo " ========================================================完成"
-	pmaurl= $(hostname -I | awk '{ print "http://"$1":8080/"}')
+	pmaurl=$(hostname -I | awk '{ print "http://"$1":8080/"}')
 	
 fi
 
