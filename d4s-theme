@@ -1,0 +1,27 @@
+docker exec drupal curl -o nivo-slider.zip    -LOk https://github.com/gilbitron/Nivo-Slider/archive/master.zip
+docker exec drupal curl -o owl.carousel.zip   -LOk http://owlgraphic.com/owlcarousel/owl.carousel.zip
+docker exec drupal curl -o fontawesome.zip    -LOk https://github.com/FortAwesome/Font-Awesome/archive/master.zip
+docker exec drupal curl -o d4s_bootstrap.zip  -LOk https://github.com/sp19851985/d4s_bootstrap/archive/master.zip
+
+
+docker exec drupal unzip nivo-slider.zip -d  /var/www/html/sites/all/libraries
+docker exec drupal mv /var/www/html/sites/all/libraries/Nivo-Slider-master /var/www/html/sites/all/libraries/nivo-slider
+
+docker exec drupal unzip owl.carousel.zip -d /var/www/html/sites/all/libraries
+docker exec drupal  mv sites/all/libraries/owl.carousel* sites/all/libraries/owl-carousel
+
+
+docker exec drupal unzip fontawesome.zip -d /var/www/html/sites/all/libraries
+docker exec drupal mv /var/www/html/sites/all/libraries/Font-Awesome-master /var/www/html/sites/all/libraries/fontawesome
+
+docker exec drupal unzip d4s_bootstrap.zip -d /var/www/html/sites/all/themes
+docker exec drupal mv /var/www/html/sites/all/themes/d4s_bootstrap-master /var/www/html/sites/all/themes/d4s_bootstrap
+
+docker exec drupal drush en jquery_update -y
+docker exec drupal drush vset jquery_update_jquery_version '1.9'
+
+docker exec drupal drush dl nivo_slider libraries bootstrap quicktabs bootstrap_quicktabs  owlcarousel views_bootstrap views_ui_basic variable fontawesome  ctools calendar colorbox  node_export   features   uuid -y -v
+docker exec drupal drush en nivo_slider libraries bootstrap quicktabs bootstrap_quicktabs owlcarousel owlcarousel_ui owlcarousel_colorbox owlcarousel_fields owlcarousel_views  views_bootstrap views_ui_basic variable fontawesome  ctools calendar colorbox date date_api date_views date_popup node_export node_export_features node_export_features_ui  features features_builder  uuid uuid_path -y
+docker exec drupal drush en features_builder_default -y
+
+docker exec drupal drush vset theme_default d4s_bootstrap
